@@ -28,7 +28,7 @@ $strSQL = ("
 
 	from 	cdr 
 
-	where 	calldate > (NOW() - INTERVAL 3 month) 
+	where 	calldate > (NOW() - INTERVAL 1 day) 
 	and 	(channel like  '%Local%' 
 	and	src != '' 
         or	recordingfile != ''
