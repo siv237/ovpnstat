@@ -1,12 +1,10 @@
 <?php
  $fileName= $_GET["fname"];
  $pathFile=exec("/usr/bin/find /var/spool/asterisk/monitor/ -name '$fileName'");
- $tmpFile="/tmp/$fileName".".wav";
+ $tmpFile="/var/www/tmp/$fileName";
 // echo $tmpFile;
- exec("ffmpeg -i $pathFile $tmpFile");
-
- exec("sox --norm -v 10 $tmpFile /tmp/dfgdfg.wav");
+ exec("sox --norm -v 10 $pathFile $tmpFile");
  header("Content-Disposition: attachment; filename=$fileName");
- readfile("/tmp/dfgdfg.wav"); 
+ readfile("$tmpFile"); 
  exit(); 
 ?>
