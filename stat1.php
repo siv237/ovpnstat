@@ -1,7 +1,7 @@
 <?php 
 
-$login="root";
-$password="PaSs";
+$login=exec("grep AMPDBUSER /etc/amportal.conf|awk -F '=' '{print $2}'");
+$password=exec("grep AMPDBPASS /etc/amportal.conf|awk -F '=' '{print $2}'");
 
 mysql_connect("127.0.0.1", $login, $password) or die(mysql_error());
 mysql_select_db("asteriskcdrdb") or die(mysql_error());
