@@ -11,7 +11,7 @@ $strSQL =
 	select 	* 
 	from cdr 
 	order by calldate desc 
-	limit 10 
+	limit 100 
 ");
 
 $rs = mysql_query($strSQL);
