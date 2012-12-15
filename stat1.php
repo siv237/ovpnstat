@@ -38,7 +38,7 @@ $FindAll="where concat_ws('|',clid,src,dst,dcontext,channel,dstchannel,lastapp,l
 if 	( $date_to == ""  and $date_from == "") 
 		{ echo "Период не задан";}
 	else 	{ 
-		$FindDate="and (calldate BETWEEN STR_TO_DATE('".$date_from."','%m/%d/%Y') AND STR_TO_DATE('".$date_to."','%m/%d/%Y'))";
+		$FindDate="and (calldate BETWEEN STR_TO_DATE('".$date_from." 00:00:00','%m/%d/%Y %H:%i:%s') AND STR_TO_DATE('".$date_to." 23:59:59','%m/%d/%Y %H:%i:%s'))";
 		}
 
 
