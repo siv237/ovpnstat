@@ -41,6 +41,10 @@ if 	( $date_to == ""  and $date_from == "")
 		$FindDate="and (calldate BETWEEN STR_TO_DATE('".$date_from."','%m/%d/%Y') AND STR_TO_DATE('".$date_to."','%m/%d/%Y'))";
 		}
 
+
+
+
+
 $strSQL = 
 ("
 	select 	* 
@@ -54,8 +58,17 @@ $strSQL =
 echo "<br>Запрос к базе:<br>".$strSQL."<br>";
 $rs = mysql_query($strSQL);
 
-
 echo "<table border='1'>";
+
+// Вытаскиваем имена полей
+$field = mysql_num_fields( $rs );
+
+echo "<tr>";
+for ( $i = 0; $i < $field; $i++ ) { 
+	$rsclmn = mysql_field_name($rs,$i);
+	echo "<td>".$rsclmn;
+}
+echo "</td>";
 
 while($id=mysql_fetch_row($rs))
 	{ 
