@@ -18,26 +18,17 @@ $strSQL =
 // Выполняем запрос
 $rs = mysql_query($strSQL);
 
-echo "<br>Запрос к базе:<br>".$strSQL."<br>";
 echo "<table border='1'>";
 
-// Вытаскиваем имена полей и формируем заголовок таблицы результатов
-$field = mysql_num_fields( $rs );
-
-echo "<tr>";
-for ( $i = 0; $i < $field; $i++ ) { 
-        $rsclmn = mysql_field_name($rs,$i);
-        echo "<td>".$rsclmn;
-}
 
 // Извлекаем значения и формируем таблицу результатов
 while($id=mysql_fetch_row($rs))
         { 
-        echo "<tr>";
-        for ($x=0; $x<=count($id)-1; $x++) 
-                {
-                echo "<td>".$id[$x];
-                }
+        echo 
+	"<tr>".
+	"<td>".$id[0].
+	"<td>".$id[1].
+	"<td><a href=orgntform.php?to=".$id[0].">звонить</a>";
         }
 echo "</table>";
 
