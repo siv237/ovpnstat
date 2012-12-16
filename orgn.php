@@ -14,19 +14,24 @@ $ast_password=exec("grep -E ']|secret' /etc/asterisk/manager.conf|tail -n1|awk -
 
 // Строка системного запроса подключения к AMI
 $stcom=
-"
-Action: Login
-Username:".$ast_username."
-Secret:".$ast_password."
+"Action: Login
+Username: ".$ast_username."
+Secret: ".$ast_password."
 
-Action:Originate
-channel:Local/".$num_from."@from-internal
-exten:".$num_to."@from-internal
-Priority:1
-CallerID:".$num_from."
+Action: Events
+Eventmask: off
+
+Action: Originate
+Channel: Local/".$num_from."@from-internal
+Exten: ".$num_to."
+Priority: 1
+CallerID: ".$num_from."
+
+Action: Logoff
 
 ";
-$string="(printf '".$stcom."')|nc -i 1 ".$ast_addr." ".$port;
-$result=exec($string);
-echo "Ожидайте ответа абонента ".$num_to;
+
+$string="(printf '".$stcom."')|nc -q 30 ".$ast_addr." ".$port;
+system($string);
+echo "<br><h1>Ожидайте ответа абонента ".$num_to."</h>";
 ?>
