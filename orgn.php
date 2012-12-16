@@ -26,7 +26,7 @@ Priority:1
 CallerID:".$num_from."
 
 ";
-$string="(printf '".$stcom."')|nc ".$ast_addr." ".$port;
+$string="(printf '".$stcom."')|nc -i 1 ".$ast_addr." ".$port;
 $result=exec($string);
 echo "Ожидайте ответа абонента ".$num_to;
 ?>
