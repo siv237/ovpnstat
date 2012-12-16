@@ -1,4 +1,5 @@
 <?php
+include 'extstat.php';
 
 // Ищем в файле конфигурации FreePBX логин и пароль к базе
 $login=exec("grep AMPDBUSER /etc/amportal.conf|grep -v '^#'|tail -n 1|awk -F '=' '{print $2}'");
@@ -19,7 +20,7 @@ $strSQL =
 $rs = mysql_query($strSQL);
 
 echo "<table border='1'>";
-
+//echo "<tr><td>Номер<td>Описание<td>Состояние<td><td>";
 
 // Извлекаем значения и формируем таблицу результатов
 while($id=mysql_fetch_row($rs))
@@ -28,6 +29,7 @@ while($id=mysql_fetch_row($rs))
 	"<tr>".
 	"<td>".$id[0].
 	"<td>".$id[1].
+        "<td>".ExtStatus($id[0]).
 	"<td><a href=orgntform.php?to=".$id[0].">звонить</a>";
         }
 echo "</table>";
