@@ -88,7 +88,7 @@ echo "</td>";
 while($id=mysql_fetch_row($rs))
 	{ 
 	echo "<tr>";
-	for ($x=0; $x<=count($id); $x++) 
+	for ($x=0; $x<=count($id)-1; $x++) 
 		{
 		echo "<td>".$id[$x];
 		}
