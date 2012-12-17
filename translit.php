@@ -93,5 +93,5 @@ $string = ereg_replace("jа","я",$string);
 return $string;
 }
 
-echo latrus ('114 BUH-Beljaeva Ljudmila');
+//echo latrus ('114 BUH-Beljaeva Ljudmila');
 ?>
