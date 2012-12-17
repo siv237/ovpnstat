@@ -27,14 +27,13 @@ $str=shell_exec("(printf '".$AmiStr."')|nc -q 30 ".$ast_addr." ".$port);
 $str=explode("\n",$str);
 $str=$str[13];
 if (strpos($str,'-1')){$str = "Номер не существует";}
-if (strpos($str,' 0')){$str = "Свободен";}
-if (strpos($str,' 1')){$str = "Разговор";}
-if (strpos($str,' 2')){$str = "Занят";}
-if (strpos($str,' 4')){$str = "Не подключен";}
+if (strpos($str,' 0')){$str = "<b><p style='color:green'>Свободен</p></b>";}
+if (strpos($str,' 1')){$str = "<p style='color:red'>Разговор</p>";}
+if (strpos($str,' 2')){$str = "<b><p style='color:red'>Занят</p></b>";}
+if (strpos($str,' 4')){$str = "<p style='color:gray'>Не подключен</p>";}
 if (strpos($str,' 8')){$str = "Идет вызов";}
 if (strpos($str,'16')){$str = "На удержании";}
 return $str;
 }
-
 ?>
 
