@@ -2,6 +2,28 @@
 function latrus ($string) # Теперь задаём функцию перекодировки транслита в кириллицу.
 {
 $string = ereg_replace("Ja","Я",$string);
+$string = ereg_replace("ju","ю",$string);
+$string = ereg_replace("jo","ё",$string);
+$string = ereg_replace("Jo","Ё",$string);
+$string = ereg_replace("zh","ж",$string);
+$string = ereg_replace("Zh","Ж",$string);
+$string = ereg_replace("jj","й",$string);
+$string = ereg_replace("Jj","Й",$string);
+$string = ereg_replace("kh","х",$string);
+$string = ereg_replace("Kh","Х",$string);
+$string = ereg_replace("ch","ч",$string);
+$string = ereg_replace("Ch","Ч",$string);
+$string = ereg_replace("sh","ш",$string);
+$string = ereg_replace("Sh","Ш",$string);
+$string = ereg_replace("shh","щ",$string);
+$string = ereg_replace("Shh","Щ",$string);
+$string = ereg_replace("'","ь",$string);
+$string = ereg_replace("''","Ь",$string);
+$string = ereg_replace("eh","э",$string);
+$string = ereg_replace("Ee","Э",$string);
+$string = ereg_replace("Ju","Ю",$string);
+$string = ereg_replace("jа","я",$string);
+
 
 $string = ereg_replace("a","а",$string);
 $string = ereg_replace("A","А",$string);
@@ -65,10 +87,11 @@ $string = ereg_replace("'","ь",$string);
 $string = ereg_replace("''","Ь",$string);
 $string = ereg_replace("eh","э",$string);
 $string = ereg_replace("Ee","Э",$string);
-$string = ereg_replace("ju","ю",$string);
 $string = ereg_replace("Ju","Ю",$string);
 $string = ereg_replace("jа","я",$string);
 
 return $string;
 }
+
+echo latrus ('114 BUH-Beljaeva Ljudmila');
 ?>
