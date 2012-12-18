@@ -15,6 +15,7 @@ $strSQL =
 ("
         select extension,name,sipname 
         from users 
+	order by extension
 ");
 
 // Выполняем запрос
