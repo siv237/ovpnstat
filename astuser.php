@@ -15,7 +15,7 @@ $strSQL =
 ("
         select extension,name,sipname 
         from users 
-	order by extension
+	order by cast(extension AS SIGNED INTEGER)
 ");
 
 // Выполняем запрос
