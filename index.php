@@ -2,5 +2,7 @@
 <br>
 <a href=astuser.php>Локальные пользователи Asterisk</a>
 <br>
-<a href=quwho.php>Кто ждёт в очереди</a>
+<a href=QueueStatus.php>Кто ждёт в очереди</a>
 
+<br>
+<br>
