@@ -60,10 +60,11 @@ foreach($column as $str)
                 "<td>".$str[Channel].
                 "<td>".showDate(time()-$str[Wait]).
                 "<td>".$str[CallerIDNum].
-                "<td>".$str[CallerIDName]
+                "<td>".$str[CallerIDName].
+		"<td><a href=redirform.php?chan=".$str[Channel].">Ответить</a>"
         	;
 		}
 	}
-
+echo '<meta http-equiv="refresh" content="6">';
 ?>
 
