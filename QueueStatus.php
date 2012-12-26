@@ -1,4 +1,6 @@
 <?php
+include 'funtime.php'; // showDate() Функция - примерное время
+
 $cname="";
 // Ищем параметры подключения к AMI в конфигаруции Asterisk
 $port=exec("grep -m 1 ^port /etc/asterisk/manager.conf|awk -F '= ' '{print $2}'");
@@ -56,28 +58,12 @@ foreach($column as $str)
                 "<tr>".
                 "<td>".$str[Queue].
                 "<td>".$str[Channel].
-                "<td>".$str[Wait].
+                "<td>".showDate(time()-$str[Wait]).
                 "<td>".$str[CallerIDNum].
                 "<td>".$str[CallerIDName]
         	;
 		}
 	}
-//	if (in_array("QueueEntry",$str))
-//		{
-//		echo $str[Event]."\n";
-//		}
-//	else
-//		{
-//		}
-//	}
-//            [Event] => QueueEntry
-//            [Queue] => 1
-//            [Position] => 1
-//            [Channel] => SIP/redcom-00000000
-//            [Uniqueid] => 1356400025.0
-//            [CallerIDNum] => 84212543777
-//            [CallerIDName] => OFS-84212543777
-//            [Wait] => 40
 
 ?>
 
