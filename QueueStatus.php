@@ -1,5 +1,6 @@
 <?php
-include 'funtime.php'; // showDate() Функция - примерное время
+include 'funtime.php';  // showDate() Функция - примерное время
+include 'formatnum.php'; // FormatTelNum() Форматирование и геостатус номера
 
 $cname="";
 // Ищем параметры подключения к AMI в конфигаруции Asterisk
@@ -48,7 +49,7 @@ foreach ($str as $string)
 //[Event] =>  QueueEntry
 //print_r($column);
 echo "<table border='1'>";
-echo "<tr><td>Очередь<td>Канал<td>Ожидание<td>Номер<td>Имя</td>";
+echo "<tr><td>Очередь<td>Канал<td>Ожидание<td>Номер<td>Имя<td>Информация<td>Действие</td>";
 
 foreach($column as $str)
 	{
@@ -61,6 +62,7 @@ foreach($column as $str)
                 "<td>".showDate(time()-$str[Wait]).
                 "<td>".$str[CallerIDNum].
                 "<td>".$str[CallerIDName].
+		"<td>".FormatTelNum(substr($str[CallerIDNum],0,-1)).
 		"<td><a href=redirform.php?chan=".$str[Channel].">Ответить</a>"
         	;
 		}
