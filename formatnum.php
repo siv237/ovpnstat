@@ -19,7 +19,7 @@ while (!feof($base))
 		}	
 	}
 if(isset($FullNum))
-	{$tel=$FullNumFormat." ".$AreaName." ".$CityName;}
+	{$tel=$FullNumFormat." ".$AreaName.", ".$CityName;}
 else
 	{$tel=$origtel;}
 return $tel;

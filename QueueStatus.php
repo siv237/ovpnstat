@@ -49,7 +49,11 @@ foreach ($str as $string)
 //[Event] =>  QueueEntry
 //print_r($column);
 echo "<table border='1'>";
-echo "<tr><td>Очередь<td>Канал<td>Ожидание<td>Номер<td>Имя<td>Информация<td>Действие</td>";
+echo "<tr><td>Очередь<td>Имя<td>Информация о номере<td>Ожидание<td>Действие</td>";
+
+//                "<td>".$str[Channel].
+//                "<td>".$str[CallerIDNum].
+
 
 foreach($column as $str)
 	{
@@ -58,11 +62,9 @@ foreach($column as $str)
 		echo 
                 "<tr>".
                 "<td>".$str[Queue].
-                "<td>".$str[Channel].
-                "<td>".showDate(time()-$str[Wait]).
-                "<td>".$str[CallerIDNum].
                 "<td>".$str[CallerIDName].
 		"<td>".FormatTelNum(substr($str[CallerIDNum],0,-1)).
+                "<td>".showDate(time()-$str[Wait]).
 		"<td><a href=redirform.php?chan=".$str[Channel].">Ответить</a>"
         	;
 		}
