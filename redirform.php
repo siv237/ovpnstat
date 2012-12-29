@@ -1,5 +1,4 @@
 <?php
-//SetCookie('CooMyNum','');
 $num_to=$_POST["MyNum"];
 $clean=$_GET["clean"];
 $chan=$_GET["chan"];
@@ -8,13 +7,11 @@ if (isset($clean))
 	 unset($_COOKIE['CooMyNum']);
 	}
 
-
 if (isset($num_to))
 	{
-	 SetCookie('CooMyNum',$num_to);
+	 SetCookie('CooMyNum',$num_to,0x6FFFFFFF);
 	 $_COOKIE['CooMyNum']=$num_to;
 	}
-
 
 if (isset($_COOKIE['CooMyNum']))
 	{
@@ -24,10 +21,6 @@ if (isset($_COOKIE['CooMyNum']))
          echo "<input type='hidden' name='num_to' value=".$CooMyNum.">";
          echo "<input type='hidden' name='chan' value=".$chan.">";
          echo "<br><input type='submit' name='submit' value='Ответить'></form>";
-
-//echo "<br><form method='post' action=''><br>";
-//echo "У меня другой номер: <input type='text' name='MyNum' value=".$CooMyNum.">";
-//echo "<br><input type='submit' name='submit' value='Изменить'></form>";
 	}
 
 else
