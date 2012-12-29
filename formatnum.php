@@ -19,7 +19,7 @@ while (!feof($base))
                 $tel=substr_replace($tel,"-",-5,0);
                 $tel=substr_replace($tel,") ",-9,0);
                 $tel=substr_replace($tel,"+7 (",-14,0);
-                echo "Сот. ".$tel." ".$strm[2].", ".$strm[3];
+                $tel="Сот. ".$tel." ".$strm[2].", ".$strm[3];
                 }       
         }
 fclose($base);
@@ -48,8 +48,9 @@ if(isset($FullNum))
 	{$tel=$FullNumFormat." ".$AreaName.", ".$CityName;}
 else
 	{$tel=$origtel;}
-return $tel;
 fclose($base);
 }
+return $tel;
+
 }
 ?>
