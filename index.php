@@ -3,6 +3,6 @@
 <a href=astuser.php>Локальные пользователи Asterisk</a>
 <br>
 <a href=QueueStatus.php>Кто ждёт в очереди?</a>
-
 <br>
+<a href=dialstat.php>Журнал звонков</a>
 <br>
