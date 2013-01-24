@@ -34,4 +34,6 @@ Action: Logoff
 $string="(printf '".$stcom."')|nc -q 30 ".$ast_addr." ".$port;
 system($string);
 echo "<br><h1>Ожидайте ответа абонента ".$num_to."</h>";
+echo "<meta http-equiv='Refresh' content='5; URL=astuser.php'>";
+
 ?>
