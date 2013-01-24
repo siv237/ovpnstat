@@ -27,11 +27,12 @@ echo "<tr><td>Номер<td>Префикс<td>Имя<td>Состояние<td>Д
 // Извлекаем значения и формируем таблицу результатов
 while($id=mysql_fetch_row($rs))
         {
-	$clid=explode('-',$id[1]); 
+	$clid=explode('-',$id[1]);
+	if($clid[0] != end($clid)){$pref=$clid[0];} else {$pref='';}
         echo 
 	"<tr>".
 	"<td>".$id[0].
-	"<td>".$clid[0].
+	"<td>".$pref.
 	"<td title='".$id[1]."'>".latrus(end($clid)).
         "<td>".ExtStatus($id[0]).
 	"<td><a href=orgntform.php?to=".$id[0].">звонить</a>";
