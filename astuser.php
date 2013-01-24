@@ -22,7 +22,7 @@ $strSQL =
 $rs = mysql_query($strSQL);
 
 echo "<table border='1'>";
-echo "<tr><td>Номер<td>Описание<td>Русс<td>Состояние<td>Действие</td>";
+echo "<tr><td>Номер<td>Префикс<td>Имя<td>Состояние<td>Действие</td>";
 
 // Извлекаем значения и формируем таблицу результатов
 while($id=mysql_fetch_row($rs))
@@ -31,8 +31,8 @@ while($id=mysql_fetch_row($rs))
         echo 
 	"<tr>".
 	"<td>".$id[0].
-	"<td>".$id[1].
-	"<td>".latrus(end($clid)).
+	"<td>".$clid[0].
+	"<td title='".$id[1]."'>".latrus(end($clid)).
         "<td>".ExtStatus($id[0]).
 	"<td><a href=orgntform.php?to=".$id[0].">звонить</a>";
         }
