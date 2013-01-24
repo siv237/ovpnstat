@@ -33,7 +33,7 @@ while($id=mysql_fetch_row($rs))
 	"<tr>".
 	"<td>".$id[0].
 	"<td>".$pref.
-	"<td title=".$id[1].">".latrus(end($clid)).
+	"<td title=\"".$id[1]."\">".latrus(end($clid)).
         "<td>".ExtStatus($id[0]).
 	"<td><a href=orgntform.php?to=".$id[0].">звонить</a>";
         }
