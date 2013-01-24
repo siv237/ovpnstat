@@ -26,12 +26,13 @@ echo "<tr><td>Номер<td>Описание<td>Русс<td>Состояние<t
 
 // Извлекаем значения и формируем таблицу результатов
 while($id=mysql_fetch_row($rs))
-        { 
+        {
+	$clid=explode('-',$id[1]); 
         echo 
 	"<tr>".
 	"<td>".$id[0].
 	"<td>".$id[1].
-	"<td>".latrus($id[1]).
+	"<td>".latrus(end($clid)).
         "<td>".ExtStatus($id[0]).
 	"<td><a href=orgntform.php?to=".$id[0].">звонить</a>";
         }
