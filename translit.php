@@ -2,6 +2,7 @@
 function latrus ($string) # Теперь задаём функцию перекодировки транслита в кириллицу.
 {
 $string = ereg_replace("Ya","Я",$string);
+$string = ereg_replace("ya","я",$string);
 $string = ereg_replace("yu","ю",$string);
 $string = ereg_replace("yo","ё",$string);
 $string = ereg_replace("Yo","Ё",$string);
