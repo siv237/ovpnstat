@@ -31,10 +31,6 @@ while($row = mysql_fetch_array($rs))
 
 $str_dst=$str_dst."src='0')";
 
-// Ищем в файле конфигурации FreePBX логин и пароль к базе
-//$login=exec("grep AMPDBUSER /etc/amportal.conf|grep -v '^#'|tail -n 1|awk -F '=' '{print $2}'");
-//$password=exec("grep AMPDBPASS /etc/amportal.conf|grep -v '^#'|tail -n 1|awk -F '=' '{print $2}'");
-
 // Запрос к базе CDR
 mysql_connect("127.0.0.1", $login, $password) or die(mysql_error());
 mysql_select_db("asteriskcdrdb") or die(mysql_error());
@@ -48,7 +44,7 @@ $strSQL =
 		duration,
 		billsec,
 		uniqueid,
-		'OUT' 
+		'&#9658' 
 	from 	cdr 
 	where 	lastapp='Dial' 
 	and 	".$str_src." 
@@ -65,7 +61,7 @@ $strSQL =
                 duration,
                 billsec,
                 uniqueid,
-                'IN' 
+                '&#9668' 
         from    cdr 
         where   disposition='ANSWERED' 
         and     ".$str_dst." 
@@ -82,14 +78,14 @@ mysql_query("SET lc_time_names = 'ru_RU'");
 $rs = mysql_query($strSQL);
 
 echo "<table border='1'>";
-echo "<tr><td>Дата звонка<td>Внутренний<td>Направление<td>Внешний<td>CLID<td>Разговор<td>Ожидание<td>ID</td>";
+echo "<tr><td>Дата звонка<td>Внутренний<td>Напр.<td>Внешний<td>CLID<td>Разговор<td>Ожидание<td>ID</td>";
 while($row = mysql_fetch_array($rs))
 
 {
 echo "<tr>" .
                "<td>" . $row[0] . 
                "<td>" . LocalName($row[2]) .
-               "<td>" . $row[7] .
+               "<td align='center'>" . $row[7] .
                "<td>" . FormatTelNum($row[3]) .
                "<td>" . $row[1] .
                "<td>" . $row[5] .

@@ -15,10 +15,11 @@ mysql_query("SET lc_time_names = 'ru_RU'");
 
 
 $rs_users = mysql_query($strSQL);
-
         while ($row = mysql_fetch_assoc($rs_users)) 
+		//print_r($row);
+
                 { 
-                 if ($row[extension]==$itel)    {$itel=$row[name];}
+                 if ($row[extension]==$itel)    {$itel="<".$row[extension]."> ".$row[name];}
                 }
 return $itel;
 }
