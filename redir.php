@@ -21,11 +21,8 @@ Secret: ".$ast_password."
 Action: Events
 Eventmask: off
 
-Action: Redirect
-Channel: ".$chan."
-Exten: ".$num_to."
-Context: from-internal
-Priority: 1
+Action: Command
+command: channel redirect ".$chan." from-internal,".$num_to.",1
 
 Action: Events
 Eventmask: off
