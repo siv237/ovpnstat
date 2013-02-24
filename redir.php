@@ -22,7 +22,7 @@ Action: Events
 Eventmask: off
 
 Action: Command
-command: channel redirect ".$chan." from-internal,".$num_to.",1
+command: channel redirect from-internal,".$chan.",".$num_to.",1
 
 Action: Events
 Eventmask: off

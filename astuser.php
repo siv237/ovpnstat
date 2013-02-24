@@ -1,10 +1,7 @@
 <?php
+include 'auth.php'; // Извлечение логина и пароля к MYSQL $login, $password
 include 'extstat.php';
 include 'translit.php'; # Функция latrus()
-
-// Ищем в файле конфигурации FreePBX логин и пароль к базе
-$login=exec("grep AMPDBUSER /etc/amportal.conf|grep -v '^#'|tail -n 1|awk -F '=' '{print $2}'");
-$password=exec("grep AMPDBPASS /etc/amportal.conf|grep -v '^#'|tail -n 1|awk -F '=' '{print $2}'");
 
 // Подключаемся к базе
 mysql_connect("127.0.0.1", $login, $password) or die(mysql_error());
