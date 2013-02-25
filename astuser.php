@@ -19,7 +19,7 @@ $strSQL =
 $rs = mysql_query($strSQL);
 
 echo "<table border='1'>";
-echo "<tr><td>Номер<td>Префикс<td>Имя<td>Состояние<td>Действие</td>";
+echo "<tr><th>Номер<th>Префикс<th>Имя<th>Состояние<th>Действие</td>";
 
 // Извлекаем значения и формируем таблицу результатов
 while($id=mysql_fetch_row($rs))

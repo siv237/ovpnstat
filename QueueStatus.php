@@ -48,8 +48,8 @@ foreach ($str as $string)
 
 //[Event] =>  QueueEntry
 //print_r($column);
-echo "<table border='1'>";
-echo "<tr><td>Очередь<td>Имя<td>Информация о номере<td>Ожидание<td>Действие</td>";
+echo "<table border 1>";
+echo "<tr><th>Очередь<th>Имя<th>Информация о номере<th>Ожидание<th>Действие</th>";
 
 //                "<td>".$str[Channel].
 //                "<td>".$str[CallerIDNum].

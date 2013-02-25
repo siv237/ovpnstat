@@ -78,7 +78,7 @@ mysql_query("SET lc_time_names = 'ru_RU'");
 $rs = mysql_query($strSQL);
 
 echo "<table border='1'>";
-echo "<tr><td>Дата звонка<td>Внутренний<td>Напр.<td>Внешний<td>CLID<td>Разговор<td>Ожидание<td>ID</td>";
+echo "<tr><th>Дата звонка<th>Внутренний<th>Напр.<th>Внешний<th>CLID<th>Разговор<th>Ожидание<th>ID</td>";
 while($row = mysql_fetch_array($rs))
 
 {

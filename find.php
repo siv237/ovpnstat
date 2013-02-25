@@ -80,7 +80,7 @@ $field = mysql_num_fields( $rs );
 echo "<tr>";
 for ( $i = 0; $i < $field; $i++ ) { 
 	$rsclmn = mysql_field_name($rs,$i);
-	echo "<td>".$rsclmn;
+	echo "<th>".$rsclmn;
 }
 echo "</td>";
 
