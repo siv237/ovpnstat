@@ -7,7 +7,8 @@ table
 
 
 {
-
+border:none;
+border:0;
 border-spacing: 0;
 
 border-collapse:collapse;
