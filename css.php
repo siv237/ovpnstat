@@ -2,69 +2,49 @@
 echo "
 <head><style type='text/css'>
 
-table 
 
-
-
+table
 {
-border:none;
-border:0;
-border-spacing: 0;
-
 border-collapse:collapse;
-
-border: 2px solid white;
-
+border:1px solid black;
 text-align:center;
-
-
-
+font-size:14;
 }
 
-th 
+th
 
 {
+#border-collapse:collapse;
+padding: 1 20px;
+background:#CCCCCC;
+font-size:16;
+color:#e1292e;
+font-weight: normal;
+#width: auto;
+border: 0px solid black;
+}	
+	
 
+tr:hover
+{
+background:#CCCCCC;
+}
+
+
+td
+{
+border: 2px;
+padding:3 9px;
+text-align:center;
 width: auto;
-
-background-color:#e1292e;
-
-color:white;
-
-padding-left:3px;
-
-text-align:center;
-
 }
-
-
-
-tr:hover 
-
-{
-
-background: #BDBDBD;
-
-
-
-}
-
-
 
 tr 
-
 {
-
  height:25px;
-
- padding: 6px; /* Поля вокруг содержимого таблицы */
-
- border: 1px solid red; /* Параметры рамки */
-
-
-
- }
-
+ padding: 9px; /* Поля вокруг содержимого таблицы */
+ border: 1px solid black; /* Параметры рамки */
+} 
 
 
 

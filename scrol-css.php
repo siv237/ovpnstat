@@ -16,8 +16,8 @@ echo "
 /* при наведениии курсора */
 ::-webkit-scrollbar-thumb:hover{
     border-width: 1px 1px 1px 2px;
-    border-color: #FF0000;
-    background-color: #FF0000;
+    border-color: #e1292e;
+	background-color: #e1292e;
 }
 /* не активное состояние */
 ::-webkit-scrollbar-track{

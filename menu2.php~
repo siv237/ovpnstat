@@ -1,0 +1,49 @@
+
+<div class="headmenu">
+<img src="img/astgolv.gif" align="left" />
+
+<ul id="nav">
+
+    <li>
+        <a href="#" title="Вернуться на главную страницу">Главная</a>
+		 </li>
+
+    <li>
+        <a href="#" title="первый модуль">Оператор</a>
+        <ul>
+            <li><a href="#">Обслуживание очереди</a></li>
+            <li><a href="#">Обзвон клиентов</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#" title="Что мы можем для вас сделать">Руководитель</a>
+        <ul>
+            <li><a href="#">Записи разговоров</a></li>
+            <li><a href="#">Журнал звонков</a></li>
+            <li><a href="#">Телефонная книга</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#" title="Наша продуктовая линейка">Администратор</a>
+        <ul>
+            <li><a href="#">Управление доступом</a></li>
+            <li><a href="#">it.jde.ru</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#" title="Как с нами связаться">Контакт</a>
+        <ul>
+            <li><a href="#">skype</a></li>
+            <li><a href="#">АСКК</a></li>
+        </ul>
+    </li>
+</ul>
+
+</div>
+<hr width="100%" size="2" color="#CCCCCC" />
+
+<?
+include'menu2-css.php';
+include 'css.php';
+include 'page-css.php';
+?>

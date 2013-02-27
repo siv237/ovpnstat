@@ -25,7 +25,7 @@ ul li a {
 .lavalamp {
     position: static;
     border: 1px solid #FFFFFF;
-    background: #e1292e;
+    background:#e1292e ;
     padding: 15px;
     height: 18px;
     width: 900px; 

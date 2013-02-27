@@ -14,11 +14,8 @@
 </div>
 </div>
 
-
-
-
 <?
- include 'css.php';
+include 'css.php';
 include 'menu-css.php';
 include 'page-css.php';
 include 'scrol-css.php';
