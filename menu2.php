@@ -1,7 +1,7 @@
 
 <div class="headmenu">
 <ul id="nav">
-
+<li><img src="img/astgolv.gif"  width="156" height="100"  />
     <li>
         <a href="#" >Главная</a>
 		 </li>
