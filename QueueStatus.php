@@ -29,8 +29,10 @@ Action: Logoff
 
 $str="(printf '".$stcom."')|nc -q 30 ".$ast_addr." ".$port;
 $str=shell_exec($str);
-
-//echo $str;
+// Если в ответе нет строки QueueEntry, значит ожидающих нет
+if (!strstr($str, "QueueEntry")){echo "Нет ожидающих абонентов";}
+// а если есть, то выполняем обработку
+else {
 $str=explode("\n",$str);
 $rows = 1;
 foreach ($str as $string)
@@ -45,16 +47,11 @@ foreach ($str as $string)
 		 $rows++;
 		}
 	}
-
-//[Event] =>  QueueEntry
-//print_r($column);
+// Рисуем заголовок таблицы
 echo "<table border 1>";
 echo "<tr><th>Очередь<th>Имя<th>Информация о номере<th>Ожидание<th>Действие</th>";
 
-//                "<td>".$str[Channel].
-//                "<td>".$str[CallerIDNum].
-
-
+// Ищем нужные поля и собираем из них таблицу ожидающих абонентов
 foreach($column as $str)
 	{
 	if(strstr($str[Event],"QueueEntry"))
@@ -69,6 +66,7 @@ foreach($column as $str)
         	;
 		}
 	}
+}
 echo '<meta http-equiv="refresh" content="6">';
 ?>
 
