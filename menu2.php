@@ -2,40 +2,33 @@
 <div class="headmenu">
 <ul id="nav">
 <li><img src="img/astgolv.gif"  width="156" height="100"  />
-    <li>
-        <a href="#" >Главная</a>
-		 </li>
+<li>
 
-    <li>
-        <a href="#">Оператор</a>
-        <ul>
-            <li><a href="menu_QueueStatus.php">Кто ждет в очереди?</a></li>
-            <li><a href="menu_astuser.php">Локальные пользователи Asterisk</a></li>
-        </ul>
-    </li>
-    <li>
-        <a href="#">Руководитель</a>
-        <ul>
-            <li><a href="">Записи разговоров</a></li>
-            <li><a href="menu_dialstat.php">Журнал звонков</a></li>
-            
-        </ul>
-    </li>
-    <li>
-        <a href="#" title="Наша продуктовая линейка">Администратор</a>
-        <ul>
-            <li><a href="#">Управление доступом</a></li>
-            <li><a href="#">it.jde.ru</a></li>
-        </ul>
-    </li>
-    <li>
-        <a href="#" title="Как с нами связаться">Контакт</a>
-        <ul>
-            <li><a href="#">skype</a></li>
-            <li><a href="#">АСКК</a></li>
-        </ul>
-    </li>
-</ul>
+<li><a href="">Оператор</a>
+ <ul>
+	<li><a href="menu_QueueStatus.php">Кто ждет в очереди?</a></li>
+	<li><a href="menu_astuser.php">Локальные пользователи Asterisk</a></li>
+ </ul>
+</li>
+
+
+<li><a href="">Руководитель</a>
+ <ul>
+	<li><a href="">Записи разговоров</a></li>
+	<li><a href="menu_dialstat.php">Журнал звонков</a></li>
+ </ul>
+</li>
+
+
+<li><a href="#">Администратор</a>
+ <ul>
+	<li><a href="menu_find.php">Глобальный поиск в базе</a></li>
+	<li><a href="cstq">Каталог запросов</a></li>
+        <li><a href="cstq/top.php">- Принятые звонки</a></li>
+ </ul>
+</li>
+
+<li><a href="https://github.com/siv237/ovpnstat/commits/master">О проекте</a></li>
 </div>
 <hr width="100%" size="2" color="#CCCCCC" />
 
