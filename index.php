@@ -1,8 +1,15 @@
+<table width="100%" height="100%">
+<tr>
+<style> a img { border: none; } </style>
+<td align="center">
+
 <a href=menu2.php>
-<img src="img/astgolv.gif"  width="156" height="100"  /></a><br>
+<img src="img/astgolv.gif" /></a><br>
 
 <br>
-<a href=menu_astuser.php>Вход</a>
+<a href=index_s.php>Упрощенная версия оформления</a>
 
-<br>
-<a href=index_s.php>Вход без оформления</a>
+
+</td>
+</tr>
+</table>
