@@ -2,6 +2,7 @@
 // Получаем аргументы
 $num_from=$_POST["v1"];
 $num_to=$_POST["v2"];
+SetCookie('CooMyNum',$num_from,0x6FFFFFFF);
 
 // Ищем параметры подключения к AMI в конфигаруции Asterisk
 $port=exec("grep -m 1 ^port /etc/asterisk/manager.conf|awk -F '= ' '{print $2}'");
@@ -33,7 +34,11 @@ Action: Logoff
 
 $string="(printf '".$stcom."')|nc -q 30 ".$ast_addr." ".$port;
 system($string);
-echo "<br><h1>Ожидайте ответа абонента ".$num_to."</h>";
-echo "<meta http-equiv='Refresh' content='5; URL=astuser.php'>";
+//echo "<br><h1>Ожидайте ответа абонента ".$num_to."</h>";
 
 ?>
+<script>
+var tm=4000
+window.setTimeout("window.close()",tm)
+</script>
+
