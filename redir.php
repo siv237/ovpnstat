@@ -1,7 +1,9 @@
 <?php
 // Получаем аргументы
+$reflink=$_POST["reflink"];
 $chan=$_POST["chan"];
 $num_to=$_POST["num_to"];
+SetCookie('CooMyNum',$num_to,0x6FFFFFFF);
 
 // Ищем параметры подключения к AMI в конфигаруции Asterisk
 $port=exec("grep -m 1 ^port /etc/asterisk/manager.conf|awk -F '= ' '{print $2}'");
@@ -22,7 +24,7 @@ Action: Events
 Eventmask: off
 
 Action: Command
-command: channel redirect from-internal,".$chan.",".$num_to.",1
+command: channel redirect ".$chan." from-internal,".$num_to.",1
 
 Action: Events
 Eventmask: off
@@ -30,10 +32,11 @@ Eventmask: off
 Action: Logoff
 
 ";
-
 $string="(printf '".$stcom."')|nc -q 30 ".$ast_addr." ".$port;
 system($string);
-//echo "<br><h1>Ожидайте ответа абонента ".$num_to."</h>";
-
-echo "<meta http-equiv='Refresh' content='2; URL=QueueStatus.php'>";
 ?>
+
+<script>
+var tm=4000
+window.setTimeout("window.close()",tm)
+</script>
