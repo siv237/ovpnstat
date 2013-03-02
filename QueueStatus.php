@@ -30,9 +30,18 @@ Action: Logoff
 $str="(printf '".$stcom."')|nc -q 30 ".$ast_addr." ".$port;
 $str=shell_exec($str);
 // Если в ответе нет строки QueueEntry, значит ожидающих нет
-if (!strstr($str, "QueueEntry")){echo "Нет ожидающих абонентов";}
+if (!strstr($str, "QueueEntry")){
+echo "Нет ожидающих абонентов";
+//Меняем заголовок
+echo '<head><script language="JavaScript"><!--
+parent.document.title="Очередь пуста";</script></head>';
+
+}
+
+
 // а если есть, то выполняем обработку
 else {
+
 $str=explode("\n",$str);
 $rows = 1;
 foreach ($str as $string)
@@ -52,6 +61,8 @@ echo "<table border 1>";
 echo "<tr><th>Очередь<th>Имя<th>Информация о номере<th>Ожидание<th>Действие</th>";
 
 // Ищем нужные поля и собираем из них таблицу ожидающих абонентов
+$n=0;
+$alltime=0;
 foreach($column as $str)
 	{
 	if(strstr($str[Event],"QueueEntry"))
@@ -64,9 +75,19 @@ foreach($column as $str)
                 "<td>".showDate(time()-$str[Wait]).
 		"<td><a href=redirform.php?chan=".$str[Channel].">Ответить</a>"
         	;
+		$n++;
+		$alltime=$alltime+$str[Wait];
 		}
 	}
+// Выводим суммарную информацию
+echo "</td></tr><br> Колличество ожидающих: ".$n."<br> Общее время ожидания: ".showDate(time()-$alltime)."<br>";
+// Привлекаем внимание изменением заголовка окна
+echo '<head><script language="JavaScript"><!-- 
+setTimeout(function() { parent.document.title="Ожидает ответа" }, 2000);
+parent.document.title="'.$n.':'.$alltime.'с";
+</script></head>';
+
 }
-echo '<meta http-equiv="refresh" content="6">';
+echo '<meta http-equiv="refresh" content="4">';
 ?>
 

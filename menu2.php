@@ -1,7 +1,6 @@
-
 <div class="headmenu">
 <ul id="nav">
-<li><img src="img/astgolv.gif"  width="156" height="100"  />
+<li><a href=index.php><img src="img/astgolv.gif"  width="156" height="100"  /></a>
 <li>
 
 <li><a href="">Оператор</a>
