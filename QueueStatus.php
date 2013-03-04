@@ -73,7 +73,7 @@ foreach($column as $str)
                 "<td>".$str[CallerIDName].
 		"<td>".FormatTelNum(substr($str[CallerIDNum],0,-1)).
                 "<td>".showDate(time()-$str[Wait]).
-		"<td><a href=redirform.php?chan=".$str[Channel].">Ответить</a>"
+		"<td><a href=redirform.php?chan=".$str[Channel]." target='call'>Ответить</a>"
         	;
 		$n++;
 		$alltime=$alltime+$str[Wait];
