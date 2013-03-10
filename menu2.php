@@ -13,7 +13,6 @@
 
 <li><a href="">Руководитель</a>
  <ul>
-	<li><a href="">Записи разговоров</a></li>
 	<li><a href="menu_dialstat.php">Журнал звонков</a></li>
  </ul>
 </li>
@@ -22,8 +21,8 @@
 <li><a href="#">Администратор</a>
  <ul>
 	<li><a href="menu_find.php">Глобальный поиск в базе</a></li>
+	<li><a href="menu_chanstat.php">Загрузка каналов</a></li>
 	<li><a href="cstq">Каталог запросов</a></li>
-        <li><a href="cstq/top.php">- Принятые звонки</a></li>
  </ul>
 </li>
 
