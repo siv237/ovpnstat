@@ -23,6 +23,7 @@
 	<li><a href="menu_find.php">Глобальный поиск в базе</a></li>
 	<li><a href="menu_chanstat.php">Загрузка каналов</a></li>
 	<li><a href="cstq">Каталог запросов</a></li>
+	<li><a href="menu_mysql_select.php">SQL запросы</a></li>
  </ul>
 </li>
 
