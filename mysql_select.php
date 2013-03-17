@@ -1,9 +1,18 @@
 <?php
+$logindb=$_POST[logindb];
+$passworddb=$_POST[passworddb];
 
-
-
-include 'mysql_connect.php';
+//include 'mysql_connect.php';
 include 'css.php';
+
+define("DATABASE_HOST", "127.0.0.1");
+define("DATABASE_USERNAME", "$logindb");
+define("DATABASE_PASSWORD", "$passworddb");
+define("DATABASE_NAME","asteriskcdrdb");
+
+mysql_connect(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD )
+or die ("<p>Соединение с Сервером MySQL: ERROR  " . mysql_error() . "</p>"  );
+echo "Соединение c cервером MySQL:  ok <br> <br> ";
 
 
 //Выбор БД
@@ -12,8 +21,14 @@ echo"Выберите Базу Данных из списка:";
 $db = mysql_query('SHOW DATABASES');
 $databd=$_REQUEST['sel'];
 
-echo "<form action='' metod='POST'>";
+echo "<form method='post' action=''>
+login:<input type = 'text'  name='logindb' value ='".$logindb."' />
+password:<input type = 'password'  name='passworddb' value ='".$passworddb."' />
+
+";
+
 echo "<br><select id='sel' name='sel' value=''>";
+
 echo " <br><option value='$databd'> $databd </option value>"; 
 while ($co = mysql_fetch_row($db)) 
 {
@@ -22,22 +37,12 @@ echo "<option value=$co[0]>  $co[0]  </option value>";
 }
 echo"<input type ='submit' value='ok' />";
 
-//$tb = mysql_list_tables($databd);
-//while ($tabl = mysql_fetch_row($tb)) 
-//{
-//echo "<ul>" . $tabl[0]; 
-
-//}
-
-
-
 
 //форма ввода запроса
 echo 
 "
-<br><input type = 'text'  name='lim' value ='10' />
-<br><textarea id='inputsql' name='input' cols='100' rows='3 value='Введите ваш запрос'' > 
-
+<br><textarea id='inputsql' name='input' cols='100' rows='10'
+>select * from cdr limit 10;
 </textarea>
 <br><input type ='submit' value='Выполнить запрос' />
 <option value='$databd'> $databd </option value>
