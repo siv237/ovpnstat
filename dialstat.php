@@ -44,7 +44,8 @@ $strSQL =
 		duration,
 		billsec,
 		uniqueid,
-		'&#9658' 
+		'&#9658',
+		recordingfile 
 	from 	cdr 
 	where 	lastapp='Dial' 
 	and 	".$str_src." 
@@ -61,7 +62,8 @@ $strSQL =
                 duration,
                 billsec,
                 uniqueid,
-                '&#9668' 
+                '&#9668',
+		recordingfile 
         from    cdr 
         where   disposition='ANSWERED' 
         and     ".$str_dst." 
@@ -78,10 +80,11 @@ mysql_query("SET lc_time_names = 'ru_RU'");
 $rs = mysql_query($strSQL);
 
 echo "<table border='1'>";
-echo "<tr><th>Дата звонка<th>Внутренний<th>Напр.<th>Внешний<th>CLID<th>Разговор<th>Ожидание<th>ID</td>";
+echo "<tr><th>Дата звонка<th>Внутренний<th>Напр.<th>Внешний<th>CLID<th>Разговор<th>Ожидание<th>ID<th>Запись</td>";
 while($row = mysql_fetch_array($rs))
 
 {
+if($row[8] !=''){$dwn="<a href=mon.php?recordingfile=$row[8] target='mon'>Скачать</a>";}else{$dwn="";}
 echo "<tr>" .
                "<td>" . $row[0] . 
                "<td>" . LocalName($row[2]) .
@@ -91,6 +94,8 @@ echo "<tr>" .
                "<td>" . $row[5] .
                "<td>" . ($row[4]-$row[5]) .
                "<td>" . $row[6] .
+               "<td>" . $dwn .
+
                "</td>";
 
 }
