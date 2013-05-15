@@ -45,6 +45,12 @@ echo "
 <br>
 ";
 
+echo "<form method='get' action='mon.php'>";
+echo "Запись разговора на номер: <input type='text' name='num_to' value='".$_COOKIE['CooMyNum']."'>";
+echo "<input type='hidden' name='recordingfile' value=".$m_date[recordingfile].">";
+echo "<input type='submit'></form>";
+
+
 print_r($m_date);
 
 ?>

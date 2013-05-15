@@ -39,10 +39,21 @@ if (isset($recordingfile))
 	}
  	if ($pathFile != '')
 		{
-		 $fileName=end(explode ("/",$pathFile));
-		 header("Content-Disposition: attachment; filename=$fileName");
-		 readfile("$pathFile"); 
-		 exit(); 
+		//Если задан номер то набрать его и проиграть в линию, а если нет то сохранить файл
+		if (!isset($_GET["num_to"]))
+			{
+		 	$fileName=end(explode ("/",$pathFile));
+		 	header("Content-Disposition: attachment; filename=$fileName");
+		 	readfile("$pathFile"); 
+		 	exit(); 
+			}
+			else
+			{
+			$num_to=$_GET["num_to"];
+			$pfile_m=pathinfo($pathFile);
+			$pfile=$pfile_m[dirname]."/".$pfile_m[filename];
+			include 'orgnmon.php';
+			}
 		}
 	else
 	{
