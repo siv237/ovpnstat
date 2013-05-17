@@ -25,7 +25,7 @@ $uniqueid= $_GET["uniqueid"];
 $recordingfile= $_GET["recordingfile"];
 
 if (isset($recordingfile))
-	{$pathFile=exec("/usr/bin/find /var/spool/asterisk/monitor/ -name '$recordingfile'");}
+	{$pathFile=exec("/usr/bin/find /var/spool/asterisk/monitor/ -iname '$recordingfile'");}
 	else
 	{ 
 	if (isset($uniqueid))
