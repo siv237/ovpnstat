@@ -3,6 +3,15 @@ echo "
 <head><style type='text/css'>
 
 
+.pole {
+   
+   border:1px solid black;
+   padding:3px;
+   font:11px Tahoma;
+   font-weight:bold;
+}
+
+
 .cent
 {
 width: 85%;

@@ -2,9 +2,9 @@
 $logindb=$_POST[logindb];
 $passworddb=$_POST[passworddb];
 
-//include 'mysql_connect.php';
+//include 'connect-mysql.php/mysql_connect.php';
 include 'css.php';
-
+include 'button_css.php';
 define("DATABASE_HOST", "127.0.0.1");
 define("DATABASE_USERNAME", "$logindb");
 define("DATABASE_PASSWORD", "$passworddb");
@@ -19,13 +19,11 @@ echo "Соединение c cервером MySQL:  ok <br> <br> ";
 
 echo"Выберите Базу Данных из списка:";
 $db = mysql_query('SHOW DATABASES');
-$databd=$_REQUEST['sel'];
+$databd=$_REQUEST['<hr/>sel'];
 
 echo "<form method='post' action=''>
 login:<input type = 'text'  name='logindb' value ='".$logindb."' />
-password:<input type = 'password'  name='passworddb' value ='".$passworddb."' />
-
-";
+password:<input type = 'password'  name='passworddb' value ='".$passworddb."' />";
 
 echo "<br><select id='sel' name='sel' value=''>";
 
@@ -35,7 +33,7 @@ while ($co = mysql_fetch_row($db))
 echo "<option value=$co[0]>  $co[0]  </option value>"; 
 
 }
-echo"<input type ='submit' value='ok' />";
+echo"<input type ='submit' class='button red' value='ok' />";
 
 
 //форма ввода запроса
@@ -44,9 +42,9 @@ echo
 <br><textarea id='inputsql' name='input' cols='100' rows='10'
 >select * from cdr limit 10;
 </textarea>
-<br><input type ='submit' value='Выполнить запрос' />
+<br><input type ='submit' class='button red' value='Выполнить запрос' />
 <option value='$databd'> $databd </option value>
-<input type = 'reset'  value='Сброс'/><br>
+<input type = 'reset' class='button red'  value='Сброс'/><br>
 ";
 
 echo"</select>";
@@ -85,7 +83,7 @@ echo "<th>" . $col[0];
 //результат запроса
 while($row = mysql_fetch_row($result)) {
 echo "<tr>";
-  for($i=0 ; $i<=15; $i++) 
+  for($i=0 ; $i<=count($row); $i++) 
 {
 
 echo"<td> $row[$i]"; 

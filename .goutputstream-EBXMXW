@@ -1,0 +1,53 @@
+
+<div class="headmenu"
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Упущенные звонки</title>
+	<meta name="author" content="gaynulin" />
+	<!-- Date: 2013-04-16 -->
+</head>
+<body>
+<br>
+
+
+
+<?php
+
+include 'page-css.php';    
+include 'connect-script/mysql_connect.php';
+include 'css.php';
+include 'button_css.php';
+
+
+mysql_select_db("asteriskcdrdb") or die(mysql_error());
+
+echo "
+<form method='POST' action='call_out.php'>";
+echo "<input type ='submit' class='button red' value='Показать номера' ' />";
+echo"</form>";
+
+//запрос
+$zapros =("select src,dst , max(calldate)
+from  cdr 
+where dstchannel NOT REGEXP '[local]' 
+and dst IN (010,011,012,016)
+and calldate > (NOW() - INTERVAL 2 day)
+group by src
+order by calldate ");
+
+$call=mysql_query($zapros);
+echo "<table>";
+echo "<tr><th>Номер телефона<th>Очередь<th>Дата звонка от клиента<th></th>";
+while($row = mysql_fetch_row($call)) 
+{
+
+echo "<tr>";
+  for($i=0 ; $i<=count($row); $i++) 
+{echo"<td> $row[$i]" ; }
+
+}
+echo "</td></table>";
+
+?>
+

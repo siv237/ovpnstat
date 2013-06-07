@@ -4,7 +4,7 @@
 <td align="center">
 
 <a href=menu2.php>
-<img src="img/astgolv.gif" /></a><br>
+<img src="img/logo-test2.jpg" /></a><br>
 
 <br>
 <a href=index_s.php>Упрощенная версия оформления</a>
