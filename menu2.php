@@ -14,6 +14,8 @@
 <li><a href="">Руководитель</a>
  <ul>
 	<li><a href="menu_dialstat.php">Журнал звонков</a></li>
+        <li><a href="menu_callfail.php">Пропущенные звонки</a></li> 
+
  </ul>
 </li>
 
