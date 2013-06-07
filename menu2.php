@@ -27,9 +27,16 @@
  </ul>
 </li>
 
-<li><a href="https://github.com/siv237/ovpnstat/commits/master">О проекте</a></li>
+<li><a href="#">О проекте</a>
+ <ul>
+        <li><a href="https://github.com/siv237/ovpnstat/commits/master">Обновления Git</a></li>
+        <li><a href="http://aststat.tobase.ru/viewforum.php?f=3">Форум</a></li>
+        <li><a href="http://ru.man.wikia.com/wiki/AstStat">Справка WiKi</a></li>
+ </ul>
+</li>
+
+
 </div>
-<hr width="100%" size="2" color="#CCCCCC" />
 
 <?
 include'menu2-css.php';

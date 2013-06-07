@@ -1,0 +1,29 @@
+<?php
+ $uniqueid= $_GET["uniqueid"];
+ $recordingfile= $_GET["recordingfile"];
+if (isset($recordingfile)){$pathFile=exec("/usr/bin/find /var/spool/asterisk/monitor/ -name '$recordingfile'");}
+	else
+	{ if (isset($uniqueid)){$pathFile=exec("/usr/bin/find /var/spool/asterisk/monitor/ -name '$uniqueid'");
+
+ $pathFile=exec("/usr/bin/find /var/spool/asterisk/monitor/ -name '*$uniqueid*'");
+
+
+	}
+		else {echo 'Условие поиска не задано!<br>';}}
+ if ($pathFile != '')
+{
+// $tmpFile="/var/www/tmp/$fileName";
+// echo $tmpFile;
+// exec("sox --norm -v 10 $pathFile $tmpFile");
+// echo $pathFile;
+ $fileName=end(explode ("/",$pathFile));
+ header("Content-Disposition: attachment; filename=$fileName");
+ readfile("$pathFile"); 
+ exit(); 
+
+}
+else
+{
+echo "Файл не найден!";
+}
+?>
