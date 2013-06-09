@@ -11,7 +11,6 @@
 <br>
 
 
-
 <?php
 include 'formatnum.php'; // FormatTelNum() Форматирование и геостатус номера
 include 'funtime.php';  // showDate() Функция - примерное время
@@ -21,6 +20,9 @@ include 'connect-script/mysql_connect.php';
 include 'css.php';
 include 'css/button_css.php';
 
+if($_COOKIE['CooKodG']==''){echo "<a href=menu_callfail.php target='search'>Код города не задан!</a>";}else{echo "Код города: ".$_COOKIE['CooKodG'];}
+echo "<br>";
+if($_COOKIE['CooQStr']==''){echo "<a href=menu_callfail.php target='search'>Номер очереди не задан!</a>";}else{echo "Номер очереди: ".$_COOKIE['CooQStr'];}
 
 mysql_select_db("asteriskcdrdb") or die(mysql_error());
 
@@ -33,6 +35,9 @@ $curdata=date('Y-m-d');
 
 $strdate="BETWEEN STR_TO_DATE('".$curdata." 08:30:00', '%Y-%m-%d %H:%i:%s') AND STR_TO_DATE('".$curdata." 23:59:59', '%Y-%m-%d %H:%i:%s')";
 //запрос
+if ($_COOKIE['CooQStr']==''){$q_str='';}else{$q_str="and c.dst IN (".$_COOKIE['CooQStr'].")";}
+
+
 $zapros =("
 
 select 
@@ -47,7 +52,7 @@ from
             and c.dstchannel = ''
             and c.calldate $strdate
 	    and lastapp='Queue'
-			and c.dst IN (010)
+		$q_str
 group by c.src) x
         left join 
 (select 
@@ -55,7 +60,7 @@ group by c.src) x
     from
         cdr as f
     where
-        LENGTH(f.dst) >= 10
+        LENGTH(concat('".$_COOKIE['CooKodG']."',f.dst)) >= 10
             and f.disposition = 'ANSWERED'
             and f.calldate  $strdate)
 
@@ -81,7 +86,7 @@ while($row = mysql_fetch_row($call))
 //{echo"<td> $row[$i]" ; }
 //
 //}
-echo "<a href=orgntform.php?to=".$row[0].">".FormatTelNum($row[0])."</a> пропущен ".showDate(strtotime($row[1])-strtotime(time()))." назад<br>";
+echo "<a href=orgntform.php?to=".$row[0].">".FormatTelNum($row[0])."</a> пропущен ".showDate(strtotime($row[1])-strtotime(time()))." назад в ".$row[1]."<br>";
  }
 
 //echo "</td></table>";

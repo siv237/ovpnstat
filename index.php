@@ -13,3 +13,4 @@
 </td>
 </tr>
 </table>
+<META HTTP-EQUIV=Refresh CONTENT="3; URL=menu2.php">
