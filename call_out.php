@@ -35,59 +35,102 @@ $curdata=date('Y-m-d');
 
 $strdate="BETWEEN STR_TO_DATE('".$curdata." 08:30:00', '%Y-%m-%d %H:%i:%s') AND STR_TO_DATE('".$curdata." 23:59:59', '%Y-%m-%d %H:%i:%s')";
 //запрос
-if ($_COOKIE['CooQStr']==''){$q_str='';}else{$q_str="and c.dst IN (".$_COOKIE['CooQStr'].")";}
+
+
+if ($str_find==''){$q_str='';}else{$q_str="where s2.dst='".$_COOKIE['CooQStr']."'";}
+$str_kodg=$_COOKIE['CooKodG'];
+
+
+
+mysql_select_db("asteriskcdrdb") or die(mysql_error());
 
 
 $zapros =("
 
-select 
-    concat('8',RIGHT(x.src,10)), x.dt
-from
-    (select 
-        c.src, max(c.calldate) as dt
-    from
-        cdr as c
-    where
-        LENGTH(c.src) >= 10
-            and c.dstchannel = ''
-            and c.calldate $strdate
-	    and lastapp='Queue'
-		$q_str
-group by c.src) x
-        left join 
-(select 
-        f.dst, f.calldate , f.src , f.disposition
-    from
-        cdr as f
-    where
-        LENGTH(concat('".$_COOKIE['CooKodG']."',f.dst)) >= 10
-            and f.disposition = 'ANSWERED'
-            and f.calldate  $strdate)
 
-as f ON RIGHT(f.dst, 10) = RIGHT(x.src, 10)
-        and f.calldate $strdate
-        and f.calldate > x.dt
-        and f.disposition = 'ANSWERED'
-  
+
+select s1.*,s2.* from
+(
+
+
+
+select * from
+(select 	t1.numb as Phone,
+	t1.mdate as IN_FAIL, 
+	if(isnull(t2.mdate),FROM_UNIXTIME(0),t2.mdate) as LastIN,
+	if(isnull(t3.mdate),FROM_UNIXTIME(0),t3.mdate) as LastOUT
+
+ from 
+(
+select max(calldate)as mdate,RIGHT(src,10)as numb from cdr where calldate $strdate
+        and LENGTH(RIGHT(src,10)) = 10
+        and dstchannel=''
+        and lastapp='Queue'
+group by RIGHT(src,10)
+)as t1
+
+left join
+
+(select max(calldate) as mdate,RIGHT(src,10)as numb from cdr where calldate $strdate
+        and LENGTH(RIGHT(src,10)) = 10
+        and lastapp='Dial'
+        and disposition='ANSWERED'
+group by RIGHT(src,10)
+)as t2
+on t2.numb=t1.numb
+
+left join
+
+(select max(calldate) as mdate,RIGHT(dst,10)as numb from cdr where calldate $strdate
+        and LENGTH(RIGHT(concat('".$str_kodg."',dst),10)) = 10
+        and lastapp='Dial'
+        and disposition='ANSWERED'
+group by RIGHT(dst,10)
+) as t3 
+on t1.numb=t3.numb
+order by t1.mdate
+
+) as result
+
 where
-    f.src is NULL order  by  x.dt desc
+IN_FAIL>LastIN and IN_FAIL>LastOUT
+)as s1
+
+left join
+
+(select * from cdr where calldate $strdate)as s2
+
+on s1.IN_FAIL=s2.calldate
+and s1.Phone=RIGHT(s2.src,10)
+
+
+
+
+$q_str
+
+
+
+
 
 ");
  
 $call=mysql_query($zapros);
-//echo "<table>";
-
-//echo "<br>";
 while($row = mysql_fetch_row($call)) 
 {
 
-//echo "<tr>";
-//  for($i=0 ; $i<=count($row); $i++) 
-//{echo"<td> $row[$i]" ; }
-//
-//}
-echo "<a href=orgntform.php?to=".$row[0].">".FormatTelNum($row[0])."</a> пропущен ".showDate(strtotime($row[1])-strtotime(time()))." назад в ".$row[1]."<br>";
+echo 	$row[7]." <a href=orgntform.php?to=8".
+	$row[0].">".FormatTelNum($row[0])."</a> пропущен ".
+	showDate(strtotime($row[1])-strtotime(time()))." назад (".$row[1].")<br>";
  }
+
+
+
+
+
+
+
+
+
 
 //echo "</td></table>";
 echo '<meta http-equiv="refresh" content="30">';
