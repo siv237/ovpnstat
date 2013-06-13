@@ -95,7 +95,6 @@ left join
 group by RIGHT(dst,10)
 ) as t3 
 on t1.numb=t3.numb
-order by t1.mdate
 
 ) as result
 
@@ -116,6 +115,7 @@ and s1.Phone=RIGHT(s2.src,10)
 #where s2.dst='".$str_find."'
 $q_str
 
+order by s1.IN_FAIL desc
 
 
 
