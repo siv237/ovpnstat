@@ -37,7 +37,7 @@ $strdate="BETWEEN STR_TO_DATE('".$curdata." 08:30:00', '%Y-%m-%d %H:%i:%s') AND 
 //запрос
 
 
-if ($str_find==''){$q_str='';}else{$q_str="where s2.dst='".$_COOKIE['CooQStr']."'";}
+$q_str="where s2.dst='".$_COOKIE['CooQStr']."'";
 $str_kodg=$_COOKIE['CooKodG'];
 
 
