@@ -12,8 +12,8 @@ if 	($_COOKIE['arilogin'] != $ARI_ADMIN_USERNAME or $_COOKIE['aripassword'] != $
 {
 echo "
 <form method='post' action=''>
-<input type='text' name='login'>
-<input type='password' name='password'>
+<input type='text' placeholder=' Логин' name='login'>
+<input type='password' placeholder=' Пароль' name='password'>
 <input type='submit' name='submit'>
 ";
 }

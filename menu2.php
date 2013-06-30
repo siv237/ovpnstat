@@ -15,7 +15,7 @@
  <ul>
 	<li><a href="menu_dialstat.php">Журнал звонков</a></li>
         <li><a href="menu_callfail.php">Пропущенные звонки</a></li> 
-
+	<li><a href="menu_opstat.php">Статистика по операторам</a></li> 
  </ul>
 </li>
 
