@@ -81,8 +81,8 @@ select 	t1.extension ext,
         SEC_TO_TIME(ibill_all-ibill_int) vh_vvnesh,
 	SEC_TO_TIME((ibill_all-ibill_int)/(icnt_answ-icnt_int)) vsred_vh_vnesh,
 
-	SEC_TO_TIME(if(isnull(itime_all),0,itime_all)+if(isnull(otime_all),0,otime_all)) all_time
-	
+	SEC_TO_TIME(if(isnull(itime_all),0,itime_all)+if(isnull(otime_all),0,otime_all)) all_time,
+	SEC_TO_TIME(if(isnull(ibill_all),0,ibill_all)+if(isnull(obill_all),0,obill_all)) all_time_ozh	
 	
 from
 
@@ -151,15 +151,15 @@ echo "<tr>" .
                "<td>" . $id[0] . 
                "<td>" . $id[1] . 
                "<td title=\"".$id[2]."\">" . latrus($id[2]) . 
-               "<td align='center' title='Исходящих всего: ".$id[7]." / ".$id[3].
+               "<td align='center' title='Исходящих всего: ".$id[9]." / ".$id[3].
 			" из них внутренних: ".$id[10]." / ".$id[5]."'>
 			".$id[11]." - ".$id[6]. 
 
-               "<td align='center' title='Входящих всего: ".$id[18]." / ".$id[13].
+               "<td align='center' title='Входящих всего: ".$id[20]." / ".$id[13].
                         " из них внутренних: ".$id[21]." / ".$id[16]."'>
                         ".$id[22]." - ".$id[17].
                "<td align='center'>" . $id[14] . 
-               "<td align='center'>" . $id[24] . 
+               "<td align='center' title='Из них непосредственно разговор: ".$id[25]."'>" . $id[24] . 
 
                "</td>";
 
