@@ -82,8 +82,8 @@ select 	t1.extension ext,
 	SEC_TO_TIME((ibill_all-ibill_int)/(icnt_answ-icnt_int)) vsred_vh_vnesh,
 
 	SEC_TO_TIME(if(isnull(itime_all),0,itime_all)+if(isnull(otime_all),0,otime_all)) all_time,
-	SEC_TO_TIME(if(isnull(ibill_all),0,ibill_all)+if(isnull(obill_all),0,obill_all)) all_time_ozh	
-	
+	SEC_TO_TIME(if(isnull(ibill_all),0,ibill_all)+if(isnull(obill_all),0,obill_all)) all_time_ozh,	
+	SEC_TO_TIME(if(isnull(ibill_all-ibill_int),0,ibill_all-ibill_int)+if(isnull(obill_all-obill_int),0,obill_all-obill_int)) all_time_vnesh	
 from
 
 
@@ -120,7 +120,7 @@ left join
 on t1.extension=t3.dst
 where not (isnull(t2.ocnt_all) and isnull(icnt_all)) and
 CONCAT_WS('|',t1.extension,LEFT(t1.name,LOCATE('-',t1.name)-1),RIGHT(t1.name,LENGTH(t1.name)-LOCATE('-',t1.name))) like ('%".$str_find."%')
-order by all_time desc
+order by all_time_vnesh desc
 
 
 ");
@@ -139,9 +139,10 @@ echo "
 	<th>Оператор
 	<th>Исходящие<br>Внешние
 	<th>Входящие<br>Внешние
-	<th>Проп.
+	<th>Не дозвонился /<br>пропущено
         <th>Среднее время внешних<br>(исходящих / входящих)
-	<th>Общее время<br>на линии
+	<th>Общее время<br>разговоров
+	<th>Время внешних<br>разговоров
 
 </td>";
 
@@ -150,19 +151,20 @@ echo "
 while($id=mysql_fetch_row($rs))
 	{ 
 echo "<tr>" .
-               "<td>" . $id[0] . 
+               "<td><a href='menu_dialstat.php?str_find=%7C".$id[0]."%7C'>" . $id[0] ."</a>". 
                "<td>" . $id[1] . 
                "<td title=\"".$id[2]."\">" . latrus($id[2]) . 
-               "<td align='center' title='Исходящих всего: ".$id[9]." / ".$id[3].
-			" из них внутренних: ".$id[10]." / ".$id[5]."'>
-			".$id[11]." - ".$id[6]. 
+               "<td align='center' title='Всего исходящих звонков ".$id[3]." общей продолжительностью ".$id[9].
+			" из них внутренних: ".$id[5]." продолжительностью ".$id[10]."'>
+			".$id[6]." - ".$id[11]. 
 
-               "<td align='center' title='Входящих всего: ".$id[20]." / ".$id[13].
-                        " из них внутренних: ".$id[21]." / ".$id[16]."'>
-                        ".$id[22]." - ".$id[17].
-               "<td align='center'>" . $id[14] . 
-               "<td align='center'>" . $id[12] ." / ". $id[23] . 
-               "<td align='center' title='Из них непосредственно разговор: ".$id[25]."'>" . $id[24] . 
+               "<td align='center' title='Всего входящих звонков ".$id[13]." общей продолжительностью ".$id[18].
+                        " из них внутренних: ".$id[16]." продолжительностью ".$id[21]."'>
+                        ".$id[17]." - ".$id[22].
+               "<td align='center'>" . $id[14] . "/" .($id[3]-$id[4]).
+               "<td align='center'>" . $id[12]." / ". $id[23] . 
+               "<td align='center' title='Общая занятость линии с учетом ожидания и неответов на звонки: ".$id[24]."'>" . $id[25] . 
+		"<td align='center'>" .  $id[26].
                "</td>";
 
 	}
