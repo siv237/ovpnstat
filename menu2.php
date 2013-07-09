@@ -1,3 +1,5 @@
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <div class="headmenu">
 <ul id="nav">
 <li><a href=index.php><img src="img/astgolv.gif"  width="156" height="100"  /></a>

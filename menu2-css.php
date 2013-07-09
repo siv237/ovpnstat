@@ -51,9 +51,9 @@ echo " <head><style type='text/css'>
 	-webkit-transition:0.30s linear opacity; /* В Webkit выпадающие пункты будут проявляться задержка */
 }
 #nav ul li{
-	padding-top:0px; /* Вводим отступ между li чтобы создать иллюзию разделенных пунктов меню (выпадающие списки) */
-	float:none;
-	background:url(dot.gif);
+#	padding-top:0px; /* Вводим отступ между li чтобы создать иллюзию разделенных пунктов меню (выпадающие списки) */
+#	float:none;
+#	background:url(dot.gif);
 }
 #nav ul a{
 	white-space:nowrap; /* Останавливаем перенос текста и создаем многострочный выпадающий пункт */
