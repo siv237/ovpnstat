@@ -1,4 +1,6 @@
-
+<head>
+<link rel="shortcut icon" href="favicon.ico" />
+</head>
 <table width="100%" height="100%">
 <tr>
 <style> a img { border: none; } </style>
