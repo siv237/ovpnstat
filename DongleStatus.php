@@ -76,17 +76,14 @@ foreach($column as $str)
                 "<td>".$str[RSSI].
 		"<td>".$str[CurrentDeviceState].
 		"<td>";	
-		 if($str[Active] == 0){ echo "Не активный";}
-		 else
-		 {
-			if($str[held] == 0){ echo "На удержании";}
-			if($str[Dialing] == 0){ echo "Исходящий вызов";}
-			if($str[Alerting] == 0){ echo "Тревога";}
-			if($str[Incoming] == 0){ echo "Входящий";}
-			if($str[Waiting] == 0){ echo "Ожидание";}
-			if($str[Releasing] == 0){ echo "Разъединение";}
-			if($str[Initializing] == 0){ echo "Инициализация";}
-                 }
+		 	if($str[Active] != 0){ echo "Разговор ";}
+			if($str[held] != 0){ echo "На удержании ";}
+			if($str[Dialing] != 0){ echo "Исходящий вызов ";}
+			if($str[Alerting] != 0){ echo "Тревога ";}
+			if($str[Incoming] != 0){ echo "Входящий ";}
+			if($str[Waiting] != 0){ echo "Ожидание ";}
+			if($str[Releasing] != 0){ echo "Разъединение ";}
+			if($str[Initializing] != 0){ echo "Инициализация ";}
                 $n++;
                 $alltime=$alltime+$str[Wait];
                 }
