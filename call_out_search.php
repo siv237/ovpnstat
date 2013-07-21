@@ -123,14 +123,23 @@ order by s1.IN_FAIL desc
 ");
  
 $call=mysql_query($zapros);
+
+$countcall=0;
+$cw=0;
+
 while($row = mysql_fetch_row($call)) 
 {
+$countcall++;
+$cw=$cw+$row[13];
+
 echo 	$row[7]." <a href=orgntform.php?to=8".
 	$row[0].">".FormatTelNum($row[0])."</a> пропущен ".
 	showDate(strtotime($row[1])-strtotime(time()))." назад (".$row[1].") ожидал: ".
 	$row[13]." сек <a href=monitor.php?id=".$row[18].">подробно</a>".
 	"<br>";
  }
+echo "<b>Всего пропущено звонков: ".$countcall." с общим временем ожидания: ".Round($cw/60,1)." мин.
+<br>Среднее время ожидания: ".Round($cw/60/$countcall,1)." мин.</b>";
 
 ?>
 

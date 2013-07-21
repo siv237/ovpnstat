@@ -1,16 +1,4 @@
 
-<div class="headmenu"
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Пропущенные звонки</title>
-	<meta name="author" content="gaynulin" />
-	<!-- Date: 2013-04-16 -->
-</head>
-<body>
-<br>
-
-
 <?php
 include 'formatnum.php'; // FormatTelNum() Форматирование и геостатус номера
 include 'funtime.php';  // showDate() Функция - примерное время
@@ -115,15 +103,15 @@ order by s1.IN_FAIL desc
 ");
  
 $call=mysql_query($zapros);
+$countcall=0;
 while($row = mysql_fetch_row($call)) 
 {
-
+$countcall++;
 echo 	$row[7]." <a href=orgntform.php?to=8".
 	$row[0].">".FormatTelNum($row[0])."</a> пропущен ".
 	showDate(strtotime($row[1])-strtotime(time()))." назад (".$row[1].")<br>";
  }
-
-
+echo "<b>Всего пропущено: ".$countcall."</b>";
 
 
 
