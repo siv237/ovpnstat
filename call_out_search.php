@@ -2,8 +2,7 @@
 <?php
 include 'formatnum.php'; // FormatTelNum() Форматирование и геостатус номера
 include 'funtime.php';  // showDate() Функция - примерное время
-
-
+include 'ncal.php'; // Поле календаря class='datepickerTimeField'
 
 
 include 'page-css.php';    
@@ -14,10 +13,8 @@ include 'connect-script/mysql_connect.php';
 
 $dt=getdate();
 
-if(isset($_GET[date_from])) {$date_from=$_GET[date_from];} else {$date_from=date('m/d/Y');}
-if(isset($_GET[time_from])) {$time_from=$_GET[time_from];} else {$time_from='08:30:00';}
-if(isset($_GET[date_to])) {$date_to=$_GET[date_to];} else {$date_to=date('m/d/Y',$dt[0]);}
-if(isset($_GET[time_to])) {$time_to=$_GET[time_to];} else {$time_to='23:59:59';}
+if(isset($_GET[date_from])) {$date_from=$_GET[date_from];} else {$date_from=date('d.m.Y 08:30:00');}
+if(isset($_GET[date_to])) {$date_to=$_GET[date_to];} else {$date_to=date('d.m.Y 23:59:59');}
 
 if(isset($_GET[str_find])) 	{
 				$str_find=$_GET[str_find];
@@ -39,10 +36,8 @@ echo "
 Код города: <input type='text'   name='str_kodg'              value='".$str_kodg."' SIZE=2><br>
 Номер очереди: <input type='text'   name='str_find'              value='".$str_find."' SIZE=2>
 <br>
-Искать с:   <input type='text'   name='date_from' class='tcal' value='".$date_from."' SIZE=8>
-            <input type='text'   name='time_from'              value='".$time_from."' SIZE=4> 
-по:         <input type='text'   name='date_to'   class='tcal' value='".$date_to."'   SIZE=8>
-            <input type='text'   name='time_to'                value='".$time_to."'   SIZE=4> 
+Искать с:   <input type='text'   name='date_from' class='datepickerTimeField' value='".$date_from."' SIZE=14>
+по:         <input type='text'   name='date_to'   class='datepickerTimeField' value='".$date_to."'   SIZE=14>
             <input type='submit'>
 </form>
 ";
@@ -51,7 +46,7 @@ if ($str_find==''){$q_str='';}else{$q_str="where s2.dst='".$str_find."'";}
 mysql_select_db("asteriskcdrdb") or die(mysql_error());
 
 
-$strdate="BETWEEN STR_TO_DATE('".$date_from." ".$time_from."', '%m/%d/%Y %H:%i:%s') AND STR_TO_DATE('".$date_to." ".$time_to."', '%m/%d/%Y %H:%i:%s')";
+$strdate="BETWEEN STR_TO_DATE('".$date_from."', '%d.%m.%Y %H:%i:%s') AND STR_TO_DATE('".$date_to."', '%d.%m.%Y %H:%i:%s')";
 $zapros =("
 
 

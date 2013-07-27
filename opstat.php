@@ -1,4 +1,5 @@
 <?php 
+include 'ncal.php'; // Поле календаря class='datepickerTimeField'
 include 'formatnum.php'; // FormatTelNum() Форматирование и геостатус номера
 include 'localname.php';
 include 'translit.php'; # Функция latrus()
@@ -12,21 +13,16 @@ if ($_GET["str_limit"] == "" )
 	{$str_limit="100";}
 else	{$str_limit=$_GET["str_limit"];}
 
-if(!isset($date_from)){$date_from=date("m/d/Y");}
-if(!isset($date_to)){$date_to=date("m/d/Y");}
+if(!isset($date_from)){$date_from=date("d.m.Y 00:00:00");}
+if(!isset($date_to)){$date_to=date("d.m.Y 23:59:59");}
 
 // Рисуем форму для поиска
 echo "<table border='0'>";
 echo "
 <form method='get' action=''>
 
-<! -- Добавляем скрипт календаря для удобства задания периода в форме поиска/--!>
-
- <link rel='stylesheet' type='text/css' href='cal/tcal.css' />
- <script type='text/javascript' src='cal/tcal.js'></script>
-
-<td>	Дата начала: <input type='text' name='date_from' class='tcal' value='".$date_from."' SIZE=8> 
-<td>	Дата окончания: <input type='text' name='date_to' class='tcal' value='".$date_to."' SIZE=8>
+<td>   Дата начала:    <input type='text' name='date_from' value='".$date_from."' class='datepickerTimeField' size=14>
+<td>   Дата окончания: <input type='text' name='date_to'   value='".$date_to."'   class='datepickerTimeField' size=14>
 <td>	Поиск: <input type='text' name='str_find' value='".$str_find."'>
 <td>	<input type='submit' value='Найти'>
 </td>
@@ -47,8 +43,7 @@ mysql_select_db("asteriskcdrdb") or die(mysql_error());
 // Текст запроса к базе
 
 
-$strdate="BETWEEN STR_TO_DATE('".$date_from." 00:00:00', '%m/%d/%Y %H:%i:%s') AND STR_TO_DATE('".$date_to." 23:59:59', '%m/%d/%Y %H:%i:%s')";
-
+$strdate="BETWEEN STR_TO_DATE('".$date_from."', '%d.%m.%Y %H:%i:%s') AND STR_TO_DATE('".$date_to."', '%d.%m.%Y %H:%i:%s')";
 
 $strSQL = 
 ("

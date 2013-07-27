@@ -1,4 +1,6 @@
 <?php 
+include 'ncal.php'; // Поле календаря class='datepickerTimeField'
+
 // Считываем переданые параметры поиска и если их нет задаем дефолты
 $date_to=$_POST["date_to"];
 $date_from=$_POST["date_from"];
@@ -7,18 +9,18 @@ if ($_POST["str_limit"] == "" )
 	{$str_limit="100";}
 else	{$str_limit=$_POST["str_limit"];}
 
+if(!isset($date_from)){$date_from=date("d.m.Y 00:00:00");}
+if(!isset($date_to)){$date_to=date("d.m.Y 23:59:59");}
+
+
+
 // Рисуем форму для поиска
 echo "<table border='0'><td>Дата начала<td>Дата окончания<td>Поиск<td>Лимит<td></tr>";
 echo "
 <form method='post' action=''>
 
-<! -- Добавляем скрипт календаря для удобства задания периода в форме поиска/--!>
-
- <link rel='stylesheet' type='text/css' href='cal/tcal.css' />
- <script type='text/javascript' src='cal/tcal.js'></script>
-
-<td>	<input type='text' name='date_from' class='tcal' value='".$date_from."'> 
-<td>	<input type='text' name='date_to' class='tcal' value='".$date_to."'>
+<td>	<input type='text' name='date_from' class='datepickerTimeField' value='".$date_from."' SIZE=14> 
+<td>	<input type='text' name='date_to' class='datepickerTimeField' value='".$date_to."' SIZE=14>
 <td>	<input type='text' name='str_find' value='".$str_find."'>
 <td>	<input type='text' name='str_limit' value='".$str_limit."' SIZE=4>
 <td>	<input type='submit' name='submit' value='Найти'>
@@ -55,7 +57,7 @@ if ($str_find == "")
 if 	( $date_to == ""  and $date_from == "") 
 		{ echo "Внимание, период не задан!";}
 	else 	{ 
-		$FindDate="and (calldate BETWEEN STR_TO_DATE('".$date_from." 00:00:00','%m/%d/%Y %H:%i:%s') AND STR_TO_DATE('".$date_to." 23:59:59','%m/%d/%Y %H:%i:%s'))";
+		$FindDate="and (calldate BETWEEN STR_TO_DATE('".$date_from."','%d.%m.%Y %H:%i:%s') AND STR_TO_DATE('".$date_to."','%d.%m.%Y %H:%i:%s'))";
 		}
 // Собираем из кусочков полный текст запроса к базе
 $strSQL = 
