@@ -162,9 +162,12 @@ echo "<tr>" .
 		"<td align='center'>" .  $id[26].
                "</td>";
 
+$sum_incoming =$sum_incoming+$id[17]-$id[22];//Суммируем (количество принятых)
+
+
 	}
 echo "</td></table>";
-
+echo "ИТОГО ПРИНЯТЫХ: ".$sum_incoming //Вывод строчки вместе со значением переменной
 
 
 
