@@ -2,7 +2,7 @@
 include 'formatnum.php'; // FormatTelNum() Форматирование и геостатус номера
 include 'localname.php';
 include 'ncal.php'; // Поле календаря class='datepickerTimeField'
-
+include 'translit.php'; # функция latrus()
 // Считываем переданые параметры поиска и если их нет задаем дефолты
 $date_to=$_GET["date_to"];
 $date_from=$_GET["date_from"];
@@ -160,7 +160,7 @@ while($row = mysql_fetch_array($rs))
 if($row[8] !=''){$dwn="<a href=mon.php?recordingfile=$row[8] target='mon'>Скачать</a>";}else{$dwn="";}
 echo "<tr>" .
                "<td>" . $row[0] . 
-               "<td>" . LocalName($row[2]).
+               "<td>" . latrus(LocalName($row[2])).//вывод абонента в Кирилице
                "<td align='center'>" . $row[7] .
                "<td>" . FormatTelNum($row[3]) .
                "<td>" . $row[1] .
@@ -170,6 +170,8 @@ echo "<tr>" .
                "<td>" . $dwn .
 
                "</td>";
+
+
 
 }
 
