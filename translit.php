@@ -22,7 +22,6 @@ $string = ereg_replace("E'","Э",$string);
 $string = ereg_replace("'","ь",$string);
 $string = ereg_replace("''","Ь",$string);
 $string = ereg_replace("e'","э",$string);
-
 $string = ereg_replace("Yu","Ю",$string);
 $string = ereg_replace("yа","я",$string);
 
