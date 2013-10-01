@@ -18,10 +18,11 @@ $string = ereg_replace("sh","ш",$string);
 $string = ereg_replace("Sh","Ш",$string);
 $string = ereg_replace("shh","щ",$string);
 $string = ereg_replace("Shh","Щ",$string);
+$string = ereg_replace("E'","Э",$string);
 $string = ereg_replace("'","ь",$string);
 $string = ereg_replace("''","Ь",$string);
 $string = ereg_replace("e'","э",$string);
-$string = ereg_replace("E'","Э",$string);
+
 $string = ereg_replace("Yu","Ю",$string);
 $string = ereg_replace("yа","я",$string);
 
