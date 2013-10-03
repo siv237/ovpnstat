@@ -15,7 +15,7 @@ if (strlen($tel) > 9)
 		while (!feof($base)) 
         		{
         		$strm=explode(";",fgets($base));
-        		if ($tel > $strm[0] and $tel < $strm[1])
+        		if ($tel >= $strm[0] and $tel <= $strm[1])
                 		{
                 		$intrv=$strm[1]-$strm[0];
                 		$tel=substr_replace($tel,"-",-2,0);
