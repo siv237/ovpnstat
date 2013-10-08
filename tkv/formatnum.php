@@ -31,8 +31,8 @@ if (strlen($tel) > 9)
                                 elseif ( $strm[2]=='Санкт-Петербург Телеком') $tel .= '<img src="./img/logotip/spb.tele2.ru.png" title="'.$strm[2].'"> ';
                                 elseif ( $strm[2]=='МГТС') $tel .= '<img src="./img/logotip/mgts.ru.png" title="'.$strm[2].'"> ';
 
-                                else $tel .= $strm[2];
-	               		$tel .= ', <b>'.$strm[3].'</b>';
+                                else $tel .= $strm[2].',';
+	               		$tel .= ' <b>'.$strm[3].'</b>';
                                 return $tel;
                 		}
         		}
