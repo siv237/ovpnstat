@@ -19,9 +19,9 @@ if (strlen($tel) > 9)
                 		$tel=substr_replace($tel,") ",-9,0);
                 		$tel=substr_replace($tel,"+7 (",-14,0);
                                 if ( $origtel[0]==9 )
-					$tel .= '<img src="./img/logotip/sot.png"> ';
+					$tel .= '<img src="./img/logotip/sot.png" title="'.$strm[2].'"> ';
                                 if ( $origtel[0]!=9 )
-                                        $tel .= '<img src="./img/logotip/tel.ico"> ';
+                                        $tel .= '<img src="./img/logotip/tel.ico" title="'.$strm[2].'"> ';
                                 $tel .= ' ';
                                 if ( $strm[2]=='МегаФон') $tel .= '<img src="./img/logotip/megafon.ru.png" title="'.$strm[2].'"> ';
                                 elseif ( $strm[2]=='Мобильные ТелеСистемы') $tel .= '<img src="./img/logotip/mts.ru.png" title="'.$strm[2].'"> ';
@@ -31,7 +31,6 @@ if (strlen($tel) > 9)
                                 elseif ( $strm[2]=='Санкт-Петербург Телеком') $tel .= '<img src="./img/logotip/spb.tele2.ru.png" title="'.$strm[2].'"> ';
                                 elseif ( $strm[2]=='МГТС') $tel .= '<img src="./img/logotip/mgts.ru.png" title="'.$strm[2].'"> ';
 
-                                else $tel .= $strm[2].',';
 	               		$tel .= ' <b>'.$strm[3].'</b>';
                                 return $tel;
                 		}
@@ -39,25 +38,26 @@ if (strlen($tel) > 9)
 
 
 	}
+// Обработка ЖДЭ, если файла jde.csv нет, то ничего не отобразится
 	else
-		 if ($tel[0] == 0 or $tel[0] == 1)
+		 if ($tel[0] == 0 or $tel[0] == 1) if (strlen($tel) >= 6)
 			{
 			$origtel=$tel;
-			$temp = file(  './def_php/jde.csv' );
+			$temp = file(  '/var/lib/aststat/jde/jde.csv' );
 	                foreach($temp as $strm)
                           {
                            $strm = explode(';', $strm);
                         if ( $tel[0].$tel[1].$tel[2].$tel[3]=== $strm[0] )
                                 {
 	                        $tel .= '<img src="./img/logotip/jde.ru.png"> ';
-                                $tel .= ', <b>'.$strm[1].'</b>';
+                                $tel .= ' <b>'.$strm[1].'</b>';
 				return $tel;
 				}
 				else
 		                        if ( $tel[0].$tel[1].$tel[2]=== $strm[0] )
                 	                {
                         	        $tel .= '<img src="./img/logotip/jde.ru.png"> ';
-                                	$tel .= ', <b>'.$strm[1].'</b>';
+                                	$tel .= ' <b>'.$strm[1].'</b>';
 					return $tel;
 	                                }
 
