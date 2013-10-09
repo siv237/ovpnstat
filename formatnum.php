@@ -38,31 +38,29 @@ if (strlen($tel) > 9)
 
 
 	}
-// Обработка ЖДЭ, если файла jde.csv нет, то ничего не отобразится
+// Обработка ЖДЭ, если файла jde.csv нет, то ничего не отобразится.Выводится значение наибольшего количества совпадений в номере
 	else
 		 if ($tel[0] == 0 or $tel[0] == 1) if (strlen($tel) >= 6)
 			{
 			$origtel=$tel;
 			$temp = file(  '/var/lib/aststat/jde/jde.csv' );
-	                foreach($temp as $strm)
-                          {
-                           $strm = explode(';', $strm);
-                        if ( $tel[0].$tel[1].$tel[2].$tel[3]=== $strm[0] )
-                                {
-	                        $tel .= '<img src="./img/logotip/jde.ru.png"> ';
-                                $tel .= ' <b>'.$strm[1].'</b>';
-				return $tel;
-				}
-				else
-		                        if ( $tel[0].$tel[1].$tel[2]=== $strm[0] )
-                	                {
-                        	        $tel .= '<img src="./img/logotip/jde.ru.png"> ';
-                                	$tel .= ' <b>'.$strm[1].'</b>';
-					return $tel;
-	                                }
-
-			   }
-			}
+            $aFind = array();
+            foreach($temp as $strm)
+                {
+                $strm = explode(';', $strm);
+                if ( substr($tel,0,strlen($strm[0])) == $strm[0] )
+                    {
+                    if ( strlen($strm[0])>strlen($aFind[0]) )
+                        $aFind = $strm;
+                    }
+                }
+            if ( !empty($aFind) )
+                {
+                $tel .= '<img src="./img/logotip/jde.ru.png"> ';
+                $tel .= ' <b>'.$aFind[1].'</b>';
+                return $tel;
+                }
+            }
 	else
 	{$tel=$origtel;}
 return $tel;
