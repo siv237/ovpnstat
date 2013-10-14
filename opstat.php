@@ -145,6 +145,19 @@ echo "
 // Извлекаем значения и формируем таблицу результатов
 while($id=mysql_fetch_row($rs))
 	{ 
+$id[1] = ereg_replace("SKL","СКЛ",$id[1]);//Заменим на транслит соответствующие аббревиатуры //ver-2013.10.14
+$id[1] = ereg_replace("ORK","ОРК",$id[1]);
+$id[1] = ereg_replace("BUH","БУХ",$id[1]);
+$id[1] = ereg_replace("BUX","БУХ",$id[1]);
+$id[1] = ereg_replace("TRN","ТРН",$id[1]);
+$id[1] = ereg_replace("PGR","ПГР",$id[1]);
+$id[1] = ereg_replace("AIS","АИС",$id[1]);
+$id[1] = ereg_replace("ARH","АРХ",$id[1]);
+$id[1] = ereg_replace("REK","РЕК",$id[1]);
+$id[1] = ereg_replace("TRN","ТРН",$id[1]);
+$id[1] = ereg_replace("AUP","АУП",$id[1]);
+$id[1] = ereg_replace("AHO","АХО",$id[1]);
+
 echo "<tr>" .
                "<td><a href='menu_dialstat.php?str_find=%7C".$id[0]."%7C'>" . $id[0] ."</a>". 
                "<td>" . $id[1] . 
@@ -164,12 +177,9 @@ echo "<tr>" .
 
 $sum_incoming =$sum_incoming+$id[17]-$id[22];//Суммируем (количество принятых)//ver-2013.09.19
 
-
 	}
 echo "</td></table>";
-echo "ИТОГО ПРИНЯТЫХ: ".$sum_incoming //Вывод строчки вместе со значением переменной//ver-2013.09.19
-
-
+echo "ИТОГО ПРИНЯТЫХ: " .$sum_incoming; //Вывод строчки вместе со значением переменной//ver-2013.09.19
 
 
 ?>
