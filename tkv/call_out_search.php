@@ -67,7 +67,7 @@ select * from
 select max(calldate)as mdate,RIGHT(src,10)as numb from cdr where calldate $strdate
         and LENGTH(RIGHT(src,10)) = 10
         and dstchannel=''
-        and lastapp='Queue'
+        and lastapp IN ('Goto', 'Queue')
 group by RIGHT(src,10)
 )as t1
 
