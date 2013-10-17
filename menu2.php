@@ -34,9 +34,9 @@
 <li><a href="#">О проекте</a>
  <ul>
         <li><a href="https://github.com/siv237/ovpnstat/commits/master">Обновления Git</a></li>
-        <li><a href="http://aststat.tobase.ru/viewforum.php?f=3">Форум</a></li>
-        <li><a href="http://ru.man.wikia.com/wiki/AstStat">Справка WiKi</a></li>
-        <li><a>Версия от <?php echo date("d M Y H:i:s", filemtime('./.git/index')); ?></a></li>
+        <li style="clear: both"><a href="http://aststat.tobase.ru/viewforum.php?f=3">Форум</a></li>
+        <li style="clear: both"><a href="http://ru.man.wikia.com/wiki/AstStat">Справка WiKi</a></li>
+        <li style="clear: both"><a>Версия от <?php echo date("d M Y H:i:s", filemtime('./.git/index')); ?></a></li>
 
  </ul>
 </li>
