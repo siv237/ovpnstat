@@ -32,10 +32,10 @@ $str=shell_exec($str);
 //echo $str;
 // Если в ответе нет строки QueueEntry, значит ожидающих нет
 if (!strstr($str, "IMEIState")){
-echo "Нет ожидающих абонентов";
+echo "<a href='http://ru.man.wikia.com/wiki/Asterisk%2BFreePBX#.D0.9F.D0.BE.D0.B4.D0.B3.D0.BE.D1.82.D0.BE.D0.B2.D0.BA.D0.B0_.D0.BC.D0.BE.D0.B4.D0.B5.D0.BC.D0.B0'>3G GSM модемы не настроены</a>";
 //Меняем заголовок
 echo '<head><script language="JavaScript"><!--
-parent.document.title="Очередь пуста";</script></head>';
+parent.document.title="Модемы не обнаружены";</script></head>';
 
 }
 
