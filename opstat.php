@@ -96,7 +96,7 @@ left join
 
 	from cdr 
 	where 
-	calldate $strdate group by src) as t2
+	calldate $strdate and not dst='s' group by src) as t2
 on t1.extension=t2.src
 left join
 (select         dst,
@@ -145,18 +145,18 @@ echo "
 // Извлекаем значения и формируем таблицу результатов
 while($id=mysql_fetch_row($rs))
 	{ 
-$id[1] = ereg_replace("SKL","СКЛ",$id[1]);//Заменим на транслит соответствующие аббревиатуры //ver-2013.10.14
-$id[1] = ereg_replace("ORK","ОРК",$id[1]);
-$id[1] = ereg_replace("BUH","БУХ",$id[1]);
-$id[1] = ereg_replace("BUX","БУХ",$id[1]);
-$id[1] = ereg_replace("TRN","ТРН",$id[1]);
-$id[1] = ereg_replace("PGR","ПГР",$id[1]);
-$id[1] = ereg_replace("AIS","АИС",$id[1]);
-$id[1] = ereg_replace("ARH","АРХ",$id[1]);
-$id[1] = ereg_replace("REK","РЕК",$id[1]);
-$id[1] = ereg_replace("TRN","ТРН",$id[1]);
-$id[1] = ereg_replace("AUP","АУП",$id[1]);
-$id[1] = ereg_replace("AHO","АХО",$id[1]);
+//$id[1] = ereg_replace("SKL","СКЛ",$id[1]);//Заменим на транслит соответствующие аббревиатуры //ver-2013.10.14
+//$id[1] = ereg_replace("ORK","ОРК",$id[1]);
+//$id[1] = ereg_replace("BUH","БУХ",$id[1]);
+//$id[1] = ereg_replace("BUX","БУХ",$id[1]);
+//$id[1] = ereg_replace("TRN","ТРН",$id[1]);
+//$id[1] = ereg_replace("PGR","ПГР",$id[1]);
+//$id[1] = ereg_replace("AIS","АИС",$id[1]);
+//$id[1] = ereg_replace("ARH","АРХ",$id[1]);
+//$id[1] = ereg_replace("REK","РЕК",$id[1]);
+//$id[1] = ereg_replace("TRN","ТРН",$id[1]);
+//$id[1] = ereg_replace("AUP","АУП",$id[1]);
+//$id[1] = ereg_replace("AHO","АХО",$id[1]);
 
 echo "<tr>" .
                "<td><a href='menu_dialstat.php?str_find=%7C".$id[0]."%7C'>" . $id[0] ."</a>". 
@@ -175,11 +175,47 @@ echo "<tr>" .
 		"<td align='center'>" .  $id[26].
                "</td>";
 
-$sum_incoming =$sum_incoming+$id[17]-$id[22];//Суммируем (количество принятых)//ver-2013.09.19
+//Считаем и выводим итоги //Тимченко
+$sum_1 =$sum_1+$id[6];
+$sum_2_temp = explode(':',$id[11]);
+$sum_2 =$sum_2 + ( $sum_2_temp[0]*60*60 + $sum_2_temp[1]*60 + $sum_2_temp[2] );
+$sum_3 =$sum_3+$id[17];
+$sum_4_temp = explode(':',$id[22]);
+$sum_4 =$sum_4 + ( $sum_4_temp[0]*60*60 + $sum_4_temp[1]*60 + $sum_4_temp[2] );
+$sum_5 =$sum_5+$id[3]-$id[4];
+$sum_6 =$sum_6+$id[14];
+$sum_7_temp = explode(':',$id[12]);
+$sum_7 =$sum_7 + ( $sum_7_temp[0]*60*60 + $sum_7_temp[1]*60 + $sum_7_temp[2] );
+if (( $sum_7_temp[0]*60*60 + $sum_7_temp[1]*60 + $sum_7_temp[2] ) > 0 ) $sum_7_count = $sum_7_count + 1;
+$sum_8_temp = explode(':',$id[23]);
+$sum_8 =$sum_8 + ( $sum_8_temp[0]*60*60 + $sum_8_temp[1]*60 + $sum_8_temp[2] );
+if (( $sum_8_temp[0]*60*60 + $sum_8_temp[1]*60 + $sum_8_temp[2] ) > 0 ) $sum_8_count = $sum_8_count + 1;
+$sum_9_temp = explode(':',$id[25]);
+$sum_9 =$sum_9 + ( $sum_9_temp[0]*60*60 + $sum_9_temp[1]*60 + $sum_9_temp[2] );
+$sum_10_temp = explode(':',$id[26]);
+$sum_10 =$sum_10 + ( $sum_10_temp[0]*60*60 + $sum_10_temp[1]*60 + $sum_10_temp[2] );
+        }
+echo "</tr>";
 
-	}
-echo "</td></table>";
-echo "ИТОГО ПРИНЯТЫХ: " .$sum_incoming; //Вывод строчки вместе со значением переменной//ver-2013.09.19
+$sum_7 =$sum_7/$sum_7_count;
+$sum_8 =$sum_8/$sum_8_count;
+
+echo "
+<tr align='center' style='background-color: #ccc;'>
+        <td>Итого
+        <td>
+        <td>
+        <td>$sum_1  - ".str_pad((int)($sum_2/3600),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_2/60%60),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_2%60),2,"0",STR_PAD_LEFT)."
+        <td>$sum_3  - ".str_pad((int)($sum_4/3600),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_4/60%60),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_4%60),2,"0",STR_PAD_LEFT)."
+        <td>$sum_5 / $sum_6
+        <td>".str_pad((int)($sum_7/3600),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_7/60%60),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_7%60),2,"0",STR_PAD_LEFT)." / ".str_pad((int)($sum_8/3600),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_8/60%60),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_8%60),2,"0",STR_PAD_LEFT)."
+        <td>".str_pad((int)($sum_9/3600),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_9/60%60),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_9%60),2,"0",STR_PAD_LEFT)."
+        <td>".str_pad((int)($sum_10/3600),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_10/60%60),2,"0",STR_PAD_LEFT).":".str_pad((int)($sum_10%60),2,"0",STR_PAD_LEFT)."
+
+</tr>";
+echo '</table>';
+
+
 
 
 ?>
