@@ -129,7 +129,7 @@ $cw=$cw+$row[13];
 
 echo 	$row[7]." <a href=orgntform.php?to=8".
 	$row[0].">".FormatTelNum($row[0])."</a> пропущен ".
-	showDate(strtotime($row[1])-strtotime(time()))." назад (".$row[1].") ожидал: ".
+	showDate( strtotime($row[1]) )." назад (".$row[1].") ожидал: ".
 	$row[13]." сек <a href=monitor.php?id=".$row[18].">подробно</a>".
 	"<br>";
  }
